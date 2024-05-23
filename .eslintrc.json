@@ -1,0 +1,41 @@
+{
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-type-checked",
+		"xo",
+		"xo-typescript",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint", "@inngest", "eslint-plugin-react-compiler"],
+	"rules": {
+		"@typescript-eslint/ban-types": 0,
+		"@typescript-eslint/naming-convention": 0,
+		"@typescript-eslint/no-floating-promises": "error",
+		"@typescript-eslint/no-misused-promises": "error",
+		"@typescript-eslint/await-thenable": "error",
+		"@typescript-eslint/consistent-type-definitions": 0,
+		"capitalized-comments": 0,
+		"no-negated-condition": 0,
+		"no-eq-null": 0,
+		"eqeqeq": ["error", "smart"],
+		"no-await-in-loop": 0,
+		"no-constant-binary-expression": "error",
+		"no-bitwise": 0,
+		"@typescript-eslint/strict-boolean-expressions": [
+			"error",
+			{
+				"allowString": false,
+				"allowNumber": false,
+				"allowNullableObject": false,
+				"allowNullableBoolean": false,
+				"allowNullableString": false,
+				"allowNullableNumber": false,
+				"allowNullableEnum": false
+			}
+		],
+		"react-compiler/react-compiler": "error"
+	},
+	"ignorePatterns": ["postcss.config.js", "src-tauri/**/*"]
+}
