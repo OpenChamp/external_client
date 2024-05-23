@@ -1,1 +1,0 @@
-External Client for OpenChamp
