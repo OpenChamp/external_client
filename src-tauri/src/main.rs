@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use tauri::{AppHandle, Manager};
+use tauri::Manager;
 
 // create the error type that represents all errors possible in our program
 #[derive(Debug, thiserror::Error)]
@@ -50,8 +50,6 @@ async fn set_main_window_visibility(window: tauri::Window, visible: bool) -> Res
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![set_main_window_visibility])
-        .invoke_handler(tauri::generate_handler![minimize_main_window])
-        .invoke_handler(tauri::generate_handler![exit_app])
         .setup(|app| {
             let _main_window = app.get_window("main").unwrap();
             Ok(())
