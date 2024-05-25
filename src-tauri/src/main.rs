@@ -47,21 +47,6 @@ async fn set_main_window_visibility(window: tauri::Window, visible: bool) -> Res
     Ok(())
 }
 
-#[tauri::command]
-async fn minimize_main_window(window: tauri::Window) -> Result<(), Error> {
-    let main_window = get_main_window(&window)?;
-    let _ = main_window.minimize();
-    Ok(())
-}
-
-#[tauri::command]
-async fn exit_app(window: tauri::Window) -> Result<(), Error> {
-    let main_window = get_main_window(&window)?;
-    let _ = main_window.close();
-    AppHandle::exit(&window.app_handle(), 0);
-    Ok(())
-}
-
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![set_main_window_visibility])
