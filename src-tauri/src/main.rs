@@ -68,7 +68,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![minimize_main_window])
         .invoke_handler(tauri::generate_handler![exit_app])
         .setup(|app| {
-            let main_window = app.get_window("main").unwrap();
+            let _main_window = app.get_window("main").unwrap();
             Ok(())
         })
         .run(tauri::generate_context!())
