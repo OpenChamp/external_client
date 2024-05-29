@@ -7,6 +7,10 @@ export default {
 				"brand-dark": "#100E1A",
 				"brand-light": "#FFEAD4",
 			},
+			animation: {
+				"fade-in": "fadeIn 200ms ease-out forwards",
+				"fade-zoom-in": "fadeZoomIn 200ms ease-out forwards",
+			},
 		},
 	},
 	plugins: [],
