@@ -1,4 +1,4 @@
-import { invoke } from "@tauri-apps/api";
+import { appWindow } from "@tauri-apps/api/window";
 import { useContext, type PropsWithChildren } from "react";
 
 import { SettingsModalContext } from "@/SettingsModal";
@@ -32,7 +32,7 @@ export function TitleBar({ children }: PropsWithChildren) {
 			<TitleBarButtonCluster>
 				<TitleBarButton
 					icon="https://api.iconify.design/heroicons:minus-16-solid.svg"
-					onClick={() => invoke("minimize_main_window")}
+					onClick={() => appWindow.minimize()}
 				/>
 				<TitleBarButton
 					icon="https://api.iconify.design/heroicons:cog-6-tooth.svg"
@@ -40,7 +40,7 @@ export function TitleBar({ children }: PropsWithChildren) {
 				/>
 				<TitleBarButton
 					icon="https://api.iconify.design/heroicons:x-mark-16-solid.svg"
-					onClick={() => invoke("exit_app")}
+					onClick={() => appWindow.close()}
 				/>
 			</TitleBarButtonCluster>
 		</header>
