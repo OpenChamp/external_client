@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import { TitleBar } from "./components/titlebar";
+import { AuthenticationContext } from "./contexts/AuthenticationContext";
+import Login from "./pages/Login";
 
 function App() {
+	const { authenticated } = useContext(AuthenticationContext);
 	return (
-		<main>
+		<main className="flex h-full flex-col">
 			<TitleBar />
-			<Outlet />
+			{authenticated ? <Outlet /> : <Login />}
 		</main>
 	);
 }

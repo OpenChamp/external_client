@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import {
 	createBrowserRouter,
@@ -8,11 +8,33 @@ import {
 } from "react-router-dom";
 
 import App from "./App";
+import { AuthenticationProvider } from "./contexts/AuthenticationContext";
+import Lobby from "./pages/Lobby";
+import { SettingsModalProvider } from "./SettingsModal";
+
+import openChampLogoImgSrc from "@/assets/openchamp.png";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route path="/" element={<App />}>
-			<Route path="" element={<span>hello</span>} />
+		<Route
+			path="/"
+			element={
+				<Suspense
+					fallback={
+						<div className="flex h-full w-full items-center justify-center">
+							<img src={openChampLogoImgSrc} className="h-20 w-20" />
+						</div>
+					}
+				>
+					<SettingsModalProvider>
+						<AuthenticationProvider>
+							<App />
+						</AuthenticationProvider>
+					</SettingsModalProvider>
+				</Suspense>
+			}
+		>
+			<Route path="" element={<Lobby />} />
 		</Route>,
 	),
 );

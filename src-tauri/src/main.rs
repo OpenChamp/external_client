@@ -3,6 +3,8 @@
 
 use tauri::{AppHandle, Manager};
 
+mod conf;
+
 // create the error type that represents all errors possible in our program
 #[derive(Debug, thiserror::Error)]
 enum Error {
@@ -66,7 +68,11 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![set_main_window_visibility])
         .invoke_handler(tauri::generate_handler![minimize_main_window])
-        .invoke_handler(tauri::generate_handler![exit_app])
+        .invoke_handler(tauri::generate_handler![
+            exit_app,
+            conf::get_config,
+            conf::set_config_value
+        ])
         .setup(|app| {
             let main_window = app.get_window("main").unwrap();
             Ok(())

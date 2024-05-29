@@ -5,3 +5,16 @@
 :root {
 	@apply bg-brand-dark;
 }
+
+html, body, #root {
+	@apply h-full;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
