@@ -1,5 +1,6 @@
-import { appWindow } from "@tauri-apps/api/window";
-import { useContext, type PropsWithChildren } from "react";
+import { invoke } from "@tauri-apps/api";
+import { appWindow } from '@tauri-apps/api/window';
+import type { PropsWithChildren } from "react";
 
 import { SettingsModalContext } from "@/SettingsModal";
 import openChampLogoImgSrc from "@/assets/openchamp.png";
