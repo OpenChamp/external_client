@@ -6,11 +6,12 @@ import { AuthenticationContext } from "./contexts/AuthenticationContext";
 import Login from "./pages/Login";
 
 function App() {
-	const { authenticated } = useContext(AuthenticationContext);
+	const { authenticated: isAuthenticated } = useContext(AuthenticationContext);
+
 	return (
 		<main className="flex h-full flex-col">
 			<TitleBar />
-			{authenticated ? <Outlet /> : <Login />}
+			{isAuthenticated ? <Outlet /> : <Login />}
 		</main>
 	);
 }

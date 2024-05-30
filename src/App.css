@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 :root {
-	@apply bg-brand-dark;
+	@apply bg-zinc-900;
 }
 
-html, body, #root {
+html,
+body,
+#root {
 	@apply h-full;
 }
 

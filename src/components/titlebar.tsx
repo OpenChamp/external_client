@@ -1,4 +1,4 @@
-import { appWindow } from '@tauri-apps/api/window';
+import { appWindow } from "@tauri-apps/api/window";
 import { useContext, type PropsWithChildren } from "react";
 
 import { SettingsModalContext } from "@/SettingsModal";
@@ -16,16 +16,18 @@ export function TitleBar({ children }: PropsWithChildren) {
 	return (
 		<header
 			data-tauri-drag-region
-			className="relative flex h-20 w-full border-b border-b-brand-light border-opacity-20"
+			className="relative flex h-20 w-full border-b border-zinc-800"
 		>
 			<div className="fixed z-50 h-4 w-full" data-tauri-drag-region />
 			{/* Always on top so that the window can be dragged from the top bar */}
 			<Link to="/">
-				<img
-					src={openChampLogoImgSrc}
-					alt="OpenChamp"
-					className="aspect-square h-20 w-20 p-4"
-				/>
+				<div className="flex h-full items-center px-4">
+					<img
+						src={openChampLogoImgSrc}
+						alt="OpenChamp"
+						className="aspect-square h-[72px] w-[72px] p-4"
+					/>
+				</div>
 			</Link>
 			<nav className="flex flex-1">{children}</nav>
 			{user ? <UserMenu user={user} /> : null}
@@ -81,8 +83,9 @@ function UserMenu({ user }: { user: IPublicUser }) {
 			<img
 				src={`/avatars/${user.avatar}.png`}
 				alt={user.tag}
-				className="aspect-square h-full rounded-full border-4 border-brand-light border-opacity-30 bg-brand-dark"
+				className="aspect-square h-full rounded-full border-2 border-copper-600 bg-brand-dark"
 			/>
+
 			<div className="flex flex-1 flex-col justify-center gap-0.5">
 				<span className="max-w-full overflow-ellipsis whitespace-nowrap text-sm font-semibold text-brand-light">
 					{user.tag}
