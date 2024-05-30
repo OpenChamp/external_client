@@ -82,7 +82,7 @@ function Login() {
 	return (
 		<section className="flex flex-1 flex-col items-center justify-center">
 			<form
-				className="flex w-[350px] flex-col gap-4 rounded-xl bg-stone-950 bg-opacity-80 p-6 shadow-xl"
+				className="flex w-[350px] flex-col gap-4 rounded-xl border border-zinc-800 bg-zinc-950 bg-opacity-80 p-6 shadow-xl"
 				ref={form}
 				onSubmit={handleLoginSubmit}
 			>
@@ -91,7 +91,7 @@ function Login() {
 						type="text"
 						placeholder="USERNAME"
 						name="tag"
-						className="rounded-md bg-stone-900 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 focus:bg-stone-800"
+						className="rounded-md border border-zinc-800 bg-zinc-900 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 placeholder:text-zinc-300 focus:bg-zinc-800"
 					/>
 				</label>
 
@@ -100,20 +100,20 @@ function Login() {
 						type="password"
 						placeholder="PASSWORD"
 						name="password"
-						className="rounded-md bg-stone-900 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 focus:bg-stone-900"
+						className="rounded-md border border-zinc-800 bg-zinc-900 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 placeholder:text-zinc-300 focus:bg-zinc-800"
 					/>
 				</label>
 
 				<div className="flex flex-col justify-between gap-4">
 					<button
 						type="submit"
-						className="border-copper-400 bg-copper-600 hover:bg-copper-100 hover:border-copper-100 flex-1 rounded-md border px-6 py-3 font-bold text-stone-100 transition-all duration-300 hover:text-stone-800"
+						className="flex-1 rounded-md border border-copper-400 bg-copper-600 px-6 py-3 font-bold text-zinc-100 transition-all duration-300 hover:border-copper-100 hover:bg-copper-100 hover:text-zinc-800"
 					>
 						LOGIN
 					</button>
 					<button
 						type="button"
-						className="rounded-md border border-transparent px-6 py-3 font-bold text-stone-100 transition-all duration-300 hover:border-stone-100 hover:bg-stone-100 hover:text-stone-800"
+						className="rounded-md border border-transparent px-6 py-3 font-bold text-zinc-100 transition-all duration-300 hover:border-zinc-100 hover:bg-zinc-100 hover:text-zinc-800"
 						onClick={handleRegisterClick}
 					>
 						REGISTER
@@ -123,7 +123,7 @@ function Login() {
 							<a key={link.to} href={link.to} target="_blank" rel="noreferrer">
 								<button
 									key={link.to}
-									className="flex aspect-square h-10 w-10 items-center justify-center rounded bg-stone-900 text-stone-100 transition-all duration-300 hover:bg-stone-100 hover:text-stone-800"
+									className="flex aspect-square h-10 w-10 items-center justify-center rounded border border-zinc-800 bg-zinc-900 text-zinc-100 transition-all duration-300 hover:bg-zinc-100 hover:text-zinc-800"
 								>
 									<FontAwesomeIcon icon={link.icon} size="xl" />
 								</button>

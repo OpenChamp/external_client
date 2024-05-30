@@ -16,7 +16,7 @@ export function TitleBar({ children }: PropsWithChildren) {
 	return (
 		<header
 			data-tauri-drag-region
-			className="relative flex h-20 w-full border-b border-stone-800"
+			className="relative flex h-20 w-full border-b border-zinc-800"
 		>
 			<div className="fixed z-50 h-4 w-full" data-tauri-drag-region />
 			{/* Always on top so that the window can be dragged from the top bar */}

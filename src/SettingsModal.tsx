@@ -75,8 +75,8 @@ function SettingsModal() {
 	const { setOpen, settings, update } = useContext(SettingsModalContext);
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-			<div className="relative h-full max-h-[70vh] w-full max-w-xl rounded-lg border border-stone-900 bg-stone-950 p-4 shadow-xl">
-				<p className="text-md text-stone-300">Launcher Settings</p>
+			<div className="relative h-full max-h-[70vh] w-full max-w-xl rounded-lg border border-zinc-900 bg-zinc-950 p-4 shadow-xl">
+				<p className="text-md text-zinc-300">Launcher Settings</p>
 				<button
 					className="absolute right-1 top-1 cursor-pointer rounded-full p-1 transition-colors duration-100 hover:bg-brand-light hover:bg-opacity-15"
 					onClick={() => setOpen(false)}
@@ -100,7 +100,7 @@ function SettingsModal() {
 				))}
 
 				<button
-					className="mt-4 rounded-md bg-copper-600 px-8 py-3 font-bold text-stone-100 transition-all duration-300 hover:bg-copper-100 hover:text-stone-800"
+					className="mt-4 rounded-md bg-copper-600 px-8 py-3 font-bold text-zinc-100 transition-all duration-300 hover:bg-copper-100 hover:text-zinc-800"
 					onClick={logout}
 				>
 					LOGOUT
@@ -152,13 +152,13 @@ function SettingStringField({
 	}, [value]);
 	return (
 		<label className="mt-4 flex flex-col space-y-1">
-			<span className="text-stone-300">{label}</span>
+			<span className="text-zinc-300">{label}</span>
 			<input
 				type="text"
 				value={internalValue}
 				onChange={(e) => setValue(e.target.value)}
 				onBlur={() => update(id, internalValue)}
-				className="rounded-md bg-stone-900 px-3 py-2 text-white"
+				className="rounded-md bg-zinc-900 px-3 py-2 text-white"
 			/>
 		</label>
 	);
