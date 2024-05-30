@@ -1,10 +1,36 @@
-import openChampLogoImgSrc from "@/assets/openchamp.png";
 import {
 	AuthenticationContext,
 	useAPI,
 } from "@/contexts/AuthenticationContext";
+import {
+	faDiscord,
+	faGithub,
+	faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+
+import { faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useContext, useRef } from "react";
+
+const socialLinks = [
+	{
+		to: "https://github.com/OpenChamp",
+		icon: faGithub,
+	},
+	{
+		to: "https://discord.gg/f6DGjvTWYT",
+		icon: faDiscord,
+	},
+	{
+		to: "https://www.youtube.com/channel/UCHQjCkTokQBNpS3vunY7d7Q",
+		icon: faYoutube,
+	},
+	{
+		to: "https://ko-fi.com/openchamp",
+		icon: faHandHoldingDollar,
+	},
+];
 
 function Login() {
 	const form = useRef<HTMLFormElement>(null);
@@ -16,11 +42,13 @@ function Login() {
 	async function handleLoginSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		if (!form.current) return;
+
 		try {
 			const res = await api.call("/v0/session/", {
 				method: "POST",
 				body: new FormData(form.current),
 			});
+
 			if ("token" in res) {
 				setToken(res.token);
 			} else if ("error" in res) {
@@ -53,34 +81,26 @@ function Login() {
 
 	return (
 		<section className="flex flex-1 flex-col items-center justify-center">
-			<img
-				src={openChampLogoImgSrc}
-				alt="OpenChamp"
-				className="aspect-square h-20 w-20 p-4"
-			/>
-			{/* <h1 className="mb-4 text-3xl font-bold text-stone-200">OpenChamp</h1> */}
 			<form
-				className="flex w-72 flex-col gap-4"
+				className="flex w-[350px] flex-col gap-4 rounded-xl bg-stone-950 bg-opacity-80 p-6 shadow-xl"
 				ref={form}
 				onSubmit={handleLoginSubmit}
 			>
 				<label className="flex flex-col">
-					{/* <span className="font-bold text-brand-light">Tag</span> */}
 					<input
 						type="text"
 						placeholder="USERNAME"
 						name="tag"
-						className="rounded-md border-2 border-brand-light border-opacity-30 bg-stone-950 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 focus:border-brand-light focus:border-opacity-60 focus:bg-stone-900 focus:outline-none"
+						className="rounded-md bg-stone-900 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 focus:bg-stone-800"
 					/>
 				</label>
 
 				<label className="flex flex-col">
-					{/* <span className="font-bold text-brand-light">Password</span> */}
 					<input
 						type="password"
 						placeholder="PASSWORD"
 						name="password"
-						className="rounded-md border-2 border-brand-light border-opacity-30 bg-stone-950 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 focus:border-brand-light focus:border-opacity-60 focus:bg-stone-900 focus:outline-none"
+						className="rounded-md bg-stone-900 p-3 text-sm font-bold tracking-widest text-white transition-all duration-300 focus:bg-stone-900"
 					/>
 				</label>
 
@@ -98,6 +118,18 @@ function Login() {
 					>
 						REGISTER
 					</button>
+					<div className="mb-4 flex justify-center gap-2">
+						{socialLinks.map((link) => (
+							<a key={link.to} href={link.to} target="_blank" rel="noreferrer">
+								<button
+									key={link.to}
+									className="flex aspect-square h-10 w-10 items-center justify-center rounded bg-stone-900 text-stone-100 transition-all duration-300 hover:bg-stone-100 hover:text-stone-800"
+								>
+									<FontAwesomeIcon icon={link.icon} size="xl" />
+								</button>
+							</a>
+						))}
+					</div>
 				</div>
 			</form>
 		</section>
