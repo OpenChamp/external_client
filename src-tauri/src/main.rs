@@ -30,6 +30,32 @@ fn main() {
         ])
         .setup(|app| {
             let _main_window = app.get_window("main").unwrap();
+            let monitor = match _main_window.current_monitor() {
+                Ok(Some(monitor)) => monitor,
+                Ok(None) => {
+                    eprintln!("No monitor detected");
+                    return Ok(());
+                }
+                Err(e) => {
+                    eprintln!("Failed to get current monitor: {}", e);
+                    return Ok(());
+                }
+            };
+            let monitor_size = monitor.size();
+
+            let (width, height) = if monitor_size.width <= 1280 && monitor_size.height <= 720 {
+                (1024, 576)
+            } else {
+                (1280, 720)
+            };
+
+            _main_window
+                .set_size(tauri::Size::Logical(tauri::LogicalSize {
+                    width: width as f64,
+                    height: height as f64,
+                }))
+                .expect("Failed to set window size");
+
             Ok(())
         })
         .run(tauri::generate_context!())
