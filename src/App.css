@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	@apply bg-zinc-900;
-}
-
 html,
 body,
 #root {
@@ -19,4 +15,8 @@ body,
 	to {
 		opacity: 1;
 	}
+}
+
+#root {
+	@apply overflow-hidden rounded-xl border border-zinc-700 bg-zinc-900;
 }
