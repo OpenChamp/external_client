@@ -13,6 +13,7 @@ import Lobby from "./pages/Lobby";
 import { SettingsModalProvider } from "./SettingsModal";
 
 import openChampLogoImgSrc from "@/assets/openchamp.png";
+import { SocketProvider } from "./contexts/SocketContext";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -28,7 +29,9 @@ const router = createBrowserRouter(
 				>
 					<SettingsModalProvider>
 						<AuthenticationProvider>
-							<App />
+							<SocketProvider>
+								<App />
+							</SocketProvider>
 						</AuthenticationProvider>
 					</SettingsModalProvider>
 				</Suspense>

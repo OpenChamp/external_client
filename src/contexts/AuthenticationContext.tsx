@@ -52,7 +52,7 @@ export function useAuthenticatedUser() {
 // TODO: flicker while fetching if user is authenticated, suspense?
 export function AuthenticationProvider({ children }: PropsWithChildren) {
 	const [token, setInternalToken] = useState(
-		window.localStorage.getItem("token"),
+		window.localStorage.getItem("token") ?? undefined,
 	);
 	const [authenticated, setAuthenticated] = useState(false);
 	const [apiBase] = useSettings("api_base_url");
@@ -92,7 +92,7 @@ export function AuthenticationProvider({ children }: PropsWithChildren) {
 	};
 
 	return (
-		<AuthenticationContext.Provider value={{ authenticated, user, setToken }}>
+		<AuthenticationContext.Provider value={{ authenticated, user, token, setToken }}>
 			{children}
 		</AuthenticationContext.Provider>
 	);
