@@ -9,12 +9,15 @@ import Home from "./pages/Home";
 import Lobby from "./pages/Lobby";
 import { SettingsModalProvider } from "./SettingsModal";
 
+import { SocketProvider } from "./contexts/SocketContext";
+
 const Root = () => (
 	<Suspense fallback={<StartupLoading />}>
 		<SettingsModalProvider>
 			<AuthenticationProvider>
-				{/* <StartupLoading /> */}
-				<App />
+				<SocketProvider>
+					<App />
+				</SocketProvider>
 			</AuthenticationProvider>
 		</SettingsModalProvider>
 	</Suspense>
