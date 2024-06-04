@@ -1,43 +1,43 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import {
-	createBrowserRouter,
-	createRoutesFromElements,
-	Route,
-	RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
+import StartupLoading from "./components/startuploading";
 import { AuthenticationProvider } from "./contexts/AuthenticationContext";
+import Home from "./pages/Home";
 import Lobby from "./pages/Lobby";
 import { SettingsModalProvider } from "./SettingsModal";
 
-import openChampLogoImgSrc from "@/assets/openchamp.png";
-
-const router = createBrowserRouter(
-	createRoutesFromElements(
-		<Route
-			path="/"
-			element={
-				<Suspense
-					fallback={
-						<div className="flex h-full w-full items-center justify-center">
-							<img src={openChampLogoImgSrc} className="h-20 w-20" />
-						</div>
-					}
-				>
-					<SettingsModalProvider>
-						<AuthenticationProvider>
-							<App />
-						</AuthenticationProvider>
-					</SettingsModalProvider>
-				</Suspense>
-			}
-		>
-			<Route path="" element={<Lobby />} />
-		</Route>,
-	),
+const Root = () => (
+	<Suspense fallback={<StartupLoading />}>
+		<SettingsModalProvider>
+			<AuthenticationProvider>
+				{/* <StartupLoading /> */}
+				<App />
+			</AuthenticationProvider>
+		</SettingsModalProvider>
+	</Suspense>
 );
+
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Root />,
+		children: [
+			{
+				path: "",
+				element: <Lobby />,
+				children: [
+					{
+						path: "",
+						element: <Home />,
+					},
+				],
+			},
+		],
+	},
+]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>

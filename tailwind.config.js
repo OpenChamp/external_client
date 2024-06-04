@@ -8,7 +8,7 @@ export default {
 				"brand-light": "#FFEAD4",
 				"copper": {
 					DEFAULT: "#B68236",
-					50: "#FAF5EE",
+					50: "#FDF7F0",
 					100: "#F5EBDD",
 					200: "#EAD6B9",
 					300: "#E0C296",
