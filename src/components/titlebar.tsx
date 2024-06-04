@@ -2,12 +2,10 @@ import { appWindow } from "@tauri-apps/api/window";
 import { useContext, type PropsWithChildren } from "react";
 
 import { SettingsModalContext } from "@/SettingsModal";
-import openChampLogoImgSrc from "@/assets/openchamp.png";
 import {
 	IPublicUser,
 	useAuthenticatedUser,
 } from "@/contexts/AuthenticationContext";
-import { Link } from "react-router-dom";
 
 export function TitleBar({ children }: PropsWithChildren) {
 	const settingsModal = useContext(SettingsModalContext);
@@ -16,22 +14,13 @@ export function TitleBar({ children }: PropsWithChildren) {
 	return (
 		<header
 			data-tauri-drag-region
-			className="relative flex h-20 w-full border-b border-zinc-800"
+			className="absolute z-50 flex w-full items-center justify-end gap-1"
 		>
-			<div className="fixed z-50 h-4 w-full" data-tauri-drag-region />
-			{/* Always on top so that the window can be dragged from the top bar */}
-			<Link to="/">
-				<div className="flex h-full items-center px-4">
-					<img
-						src={openChampLogoImgSrc}
-						alt="OpenChamp"
-						className="aspect-square h-[72px] w-[72px] p-4"
-					/>
-				</div>
-			</Link>
-			<nav className="flex flex-1">{children}</nav>
-			{user ? <UserMenu user={user} /> : null}
-			<TitleBarButtonCluster>
+			{/* {user && <UserMenu user={user} />} */}
+			<div
+				data-tauri-drag-region
+				className="flex grow items-center justify-end gap-1 pr-1"
+			>
 				<TitleBarButton
 					icon="https://api.iconify.design/heroicons:minus-16-solid.svg"
 					onClick={() => appWindow.minimize()}
@@ -44,13 +33,9 @@ export function TitleBar({ children }: PropsWithChildren) {
 					icon="https://api.iconify.design/heroicons:x-mark-16-solid.svg"
 					onClick={() => appWindow.close()}
 				/>
-			</TitleBarButtonCluster>
+			</div>
 		</header>
 	);
-}
-
-function TitleBarButtonCluster({ children }: PropsWithChildren) {
-	return <div className="absolute right-0 top-0 z-50 flex">{children}</div>;
 }
 
 function TitleBarButton({
@@ -63,11 +48,11 @@ function TitleBarButton({
 	return (
 		<button
 			type="button"
-			className="cursor-pointer p-2 transition-colors duration-100 hover:bg-brand-light hover:bg-opacity-15"
+			className="cursor-pointer p-2 transition-colors hover:brightness-125"
 			onClick={onClick}
 		>
 			<div
-				className="h-4 w-4 bg-brand-light"
+				className="h-4 w-4 bg-copper-300"
 				style={{
 					mask: `url(${icon}) no-repeat center`,
 					WebkitMask: `url(${icon}) no-repeat center`,
