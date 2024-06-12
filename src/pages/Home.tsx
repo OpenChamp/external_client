@@ -1,4 +1,18 @@
-const Home = () => {
+import { LobbyContext } from "@/contexts/LobbyContext";
+import { useContext } from "react";
+
+function Home() {
+	const { lobby } = useContext(LobbyContext)
+
+	if (!lobby) {
+		return <CreateLobby />
+	}
+
+	return <div>Joining lobby...</div>
+};
+
+function CreateLobby() {
+	const { createLobby } = useContext(LobbyContext)
 	return (
 		<div className="flex h-full w-full flex-col items-center justify-between gap-2 pb-12">
 			<div className="grid h-full grid-cols-3 gap-4 p-4">
@@ -21,16 +35,18 @@ const Home = () => {
 				/>
 			</div>
 			<button
+				type="submit"
 				className="fantasy-btn fantasy-copper rounded-sm p-3 px-16 text-2xl 
-      font-bold text-zinc-100 transition-colors"
+			font-bold text-zinc-100 transition-colors"
+				onClick={() => createLobby("1v1")}
 			>
 				PLAY
 			</button>
 		</div>
 	);
-};
+}
 
-const Map = ({
+function Map ({
 	name,
 	type,
 	description,
@@ -40,7 +56,7 @@ const Map = ({
 	type: string;
 	description: string;
 	disabled?: boolean;
-}) => {
+}) {
 	const disabledStyles =
 		" opacity-50 cursor-not-allowed bg-zinc-950 bg-opacity-50 border-transparent";
 	return (

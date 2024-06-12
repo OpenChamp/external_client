@@ -10,13 +10,16 @@ import Lobby from "./pages/Lobby";
 import { SettingsModalProvider } from "./SettingsModal";
 
 import { SocketProvider } from "./contexts/SocketContext";
+import { LobbyProvider } from "./contexts/LobbyContext";
 
 const Root = () => (
 	<Suspense fallback={<StartupLoading />}>
 		<SettingsModalProvider>
 			<AuthenticationProvider>
 				<SocketProvider>
-					<App />
+					<LobbyProvider>
+						<App />
+					</LobbyProvider>
 				</SocketProvider>
 			</AuthenticationProvider>
 		</SettingsModalProvider>
