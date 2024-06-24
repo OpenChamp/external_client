@@ -49,6 +49,14 @@ fn main() {
                 (1280, 720)
             };
 
+            // ensure app_data_dir exists
+            let c = app.config().clone();
+            let app_data_dir =
+                tauri::api::path::app_data_dir(&c).expect("failed to get app data dir");
+            if !app_data_dir.exists() {
+                std::fs::create_dir_all(app_data_dir).expect("failed to create app data dir");
+            }
+
             _main_window
                 .set_size(tauri::Size::Logical(tauri::LogicalSize {
                     width: width as f64,
